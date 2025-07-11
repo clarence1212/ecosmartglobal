@@ -1,1 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Smart Global - Advanced Energy Management & IoT Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .logo::before {
+            content: "🌿";
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: block;
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .research-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #667eea;
+        }
+
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .achievement-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .achievement-list li {
+            color: #27ae60;
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .achievement-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* Button */
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* White Paper Modal - FIXED VERSION */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 99999 !important; /* VERY HIGH Z-INDEX */
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1000px;
+            height: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 100000 !important;
+        }
+
+        .modal-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+        }
+
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .close:hover {
+            opacity: 0.7;
+        }
+
+        .modal-body {
+            padding: 2rem;
+            height: calc(100% - 120px);
+            overflow-y: auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .modal-body h1, .modal-body h2, .modal-body h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .modal-body h1 {
+            font-size: 2rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+
+        .modal-body h2 {
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+
+        .modal-body h3 {
+            font-size: 1.2rem;
+        }
+
+        .modal-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .modal-body th, .modal-body td {
+            border: 1px solid #ddd;
+            padding: 0.8rem;
+            text-align: left;
+        }
+
+        .modal-body th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .stats-row, .research-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                width: 95%;
+                height: 95%;
+                margin: 2.5% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Eco Smart Global</div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Advanced Energy Management & IoT Research</h1>
+                <p>Proven intelligent automation solutions achieving 30-50% peak load reductions across 300+ educational facilities worldwide. Leading research in AI-driven energy optimization and sustainable technology innovation.</p>
+                
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <span class="stat-number pulse">300+</span>
+                        <span>Classroom Deployments</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number pulse">60%</span>
+                        <span>Peak Load Reduction</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number pulse">$50K+</span>
+                        <span>Annual Savings per School</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number pulse">99.9%</span>
+                        <span>System Uptime</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2 class="section-title">Research & Innovation Achievements</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <h3>🧠 AI-Driven Energy Management</h3>
+                    <p>Advanced machine learning systems achieving autonomous grid-responsive control with real-world validation across educational facilities.</p>
+                    <ul class="achievement-list">
+                        <li>95%+ accuracy in energy consumption forecasting</li>
+                        <li>Sub-second latency grid signal response</li>
+                        <li>40% carbon footprint reduction demonstrated</li>
+                        <li>Autonomous optimization without human intervention</li>
+                    </ul>
+                </div>
+
+                <div class="research-card">
+                    <h3>🔗 Next-Generation IoT Integration</h3>
+                    <p>Comprehensive multi-protocol IoT ecosystem enabling seamless integration across diverse building management systems.</p>
+                    <ul class="achievement-list">
+                        <li>80% latency reduction through edge computing</li>
+                        <li>Universal KNX, Shelly, Tuya, Z-Wave integration</li>
+                        <li>Zero security breaches across all deployments</li>
+                        <li>Multi-layer cybersecurity framework</li>
+                    </ul>
+                </div>
+
+                <div class="research-card">
+                    <h3>⚡ Virtual Power Plant Technology</h3>
+                    <p>Operational VPP systems managing distributed energy resources with advanced grid stability algorithms.</p>
+                    <ul class="achievement-list">
+                        <li>500+ distributed energy resources coordinated</li>
+                        <li>±0.1Hz grid frequency maintenance</li>
+                        <li>100% infrastructure overload prevention</li>
+                        <li>Real-time load balancing automation</li>
+                    </ul>
+                </div>
+
+                <div class="research-card">
+                    <h3>🎓 Educational Sector Innovation</h3>
+                    <p>Research-backed solutions optimizing learning environments through intelligent climate and energy management.</p>
+                    <ul class="achievement-list">
+                        <li>25+ schools with real-time carbon education</li>
+                        <li>30% reduction in maintenance costs</li>
+                        <li>99.5% occupancy detection accuracy</li>
+                        <li>Correlation of environment and learning outcomes</li>
+                    </ul>
+                </div>
+
+                <div class="research-card">
+                    <h3>🌱 Sustainable Building Technologies</h3>
+                    <p>Net-zero building automation systems with advanced sensor networks and waste heat recovery.</p>
+                    <ul class="achievement-list">
+                        <li>40% energy reduction vs conventional HVAC</li>
+                        <li>25% efficiency improvement through heat recovery</li>
+                        <li>Autonomous net-zero building control</li>
+                        <li>Advanced occupancy-responsive environments</li>
+                    </ul>
+                </div>
+
+                <div class="research-card">
+                    <h3>🔧 Hardware Innovation</h3>
+                    <p>Advanced IoT controllers and monitoring systems with edge AI processing and ultra-low power consumption.</p>
+                    <ul class="achievement-list">
+                        <li>$10 BOM heat pump controller with MQTT</li>
+                        <li>Edge AI processing for autonomous decisions</li>
+                        <li>Multi-sensor fusion (temp, humidity, CO2, motion)</li>
+                        <li>5+ years continuous operation validation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section">
+        <div class="container">
+            <h2 class="section-title">Research Publications & Technical Documentation</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">
+                Comprehensive technical documentation and research findings from our advanced R&D programs.
+            </p>
+            
+            <div class="research-grid">
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #667eea;">
+                    <div style="color: #667eea; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">AI & Machine Learning</div>
+                    <div style="font-size: 1.2rem; color: #2c3e50; margin-bottom: 1rem; font-weight: 600;">Machine Learning Approaches to Peak Load Prediction in Educational Facilities</div>
+                    <p>Comprehensive analysis of LSTM, Transformer, and custom neural networks for energy demand forecasting with real-world validation data.</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="showModal('modal1')">Download Full Paper (24 pages)</button>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #667eea;">
+                    <div style="color: #667eea; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Hardware Innovation</div>
+                    <div style="font-size: 1.2rem; color: #2c3e50; margin-bottom: 1rem; font-weight: 600;">Edge AI Controllers for Autonomous Building Energy Management</div>
+                    <p>Performance analysis of local vs. cloud processing, power optimization strategies, and field deployment reliability metrics.</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="showModal('modal2')">Download Full Paper (18 pages)</button>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #667eea;">
+                    <div style="color: #667eea; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">IoT & Cybersecurity</div>
+                    <div style="font-size: 1.2rem; color: #2c3e50; margin-bottom: 1rem; font-weight: 600;">Cybersecurity Framework for Critical Infrastructure IoT</div>
+                    <p>Multi-layer security architecture, threat modeling, zero-trust implementation, and real-time attack detection for energy systems.</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="showModal('modal3')">Download Full Paper (32 pages)</button>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #667eea;">
+                    <div style="color: #667eea; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Energy Management</div>
+                    <div style="font-size: 1.2rem; color: #2c3e50; margin-bottom: 1rem; font-weight: 600;">High-Precision Energy Monitoring in Educational Facilities</div>
+                    <p>Comparative analysis of monitoring technologies, phase imbalance detection, and predictive maintenance algorithms.</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="showModal('modal4')">Download Full Paper (28 pages)</button>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #667eea;">
+                    <div style="color: #667eea; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Virtual Power Plants</div>
+                    <div style="font-size: 1.2rem; color: #2c3e50; margin-bottom: 1rem; font-weight: 600;">Distributed Energy Resource Coordination: Algorithms and Implementation</div>
+                    <p>Grid stability through automated demand response, load balancing optimization, and case studies from live deployments.</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="showModal('modal5')">Download Full Paper (26 pages)</button>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #667eea;">
+                    <div style="color: #667eea; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Sustainability</div>
+                    <div style="font-size: 1.2rem; color: #2c3e50; margin-bottom: 1rem; font-weight: 600;">Comprehensive Carbon Accounting in Educational Facilities</div>
+                    <p>Real-time carbon footprint calculation methodology, renewable energy integration, and ESG reporting compliance frameworks.</p>
+                    <button class="btn" style="margin-top: 1rem;" onclick="showModal('modal6')">Download Full Paper (22 pages)</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); color: white; text-align: center; padding: 80px 0;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Connect with Our Research Team</h2>
+            
+            <div class="research-grid">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3>🔬 Research Partnerships</h3>
+                    <p>Academic collaborations and joint research opportunities in smart energy management and IoT automation.</p>
+                    <p><strong>research@ecosmartglobal.com</strong></p>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3>🏢 Technology Licensing</h3>
+                    <p>Licensing opportunities for our proven platform technologies and intellectual property portfolio.</p>
+                    <p><strong>licensing@ecosmartglobal.com</strong></p>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3>🌐 Global Operations</h3>
+                    <p>Implementation partnerships and deployment opportunities in international markets.</p>
+                    <p><strong>global@ecosmartglobal.com</strong></p>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h3>📊 Technical Documentation</h3>
+                    <p>Access to detailed technical specifications, integration guides, and performance benchmarks.</p>
+                    <p><strong>technical@ecosmartglobal.com</strong></p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 15px;">
+                <h3>Global Headquarters</h3>
+                <p>New Zealand Research & Development Center</p>
+                <p>Leading the global transition to intelligent energy management</p>
+                <p><strong>📧 info@ecosmartglobal.com</strong> | <strong>🌐 ecosmartglobal.com</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Eco Smart Global. Advanced Energy Management & IoT Research. All rights reserved.</p>
+            <p>Proven solutions • Research excellence • Global innovation</p>
+        </div>
+    </footer>
+
+    <!-- White Paper Modals -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="hideModal('modal1')">&times;</span>
+                <h2>Machine Learning Approaches to Peak Load Prediction</h2>
+                <p>A Comprehensive Analysis of AI-Driven Energy Management Systems</p>
+            </div>
+            <div class="modal-body">
+                <h1>Machine Learning Approaches to Peak Load Prediction in Educational Facilities</h1>
+                <p><strong>Authors:</strong> Eco Smart Global Research Team<br>
+                <strong>Date:</strong> January 2025<br>
+                <strong>Classification:</strong> Technical Research Paper</p>
+                
+                <h2>Executive Summary</h2>
+                <p>This paper presents a comprehensive analysis of machine learning approaches for peak load prediction in educational facilities, based on real-world deployments across 300+ classrooms in New Zealand. Our research demonstrates that advanced AI-driven systems can achieve 30-50% peak load reductions while maintaining optimal learning environments.</p>
+                
+                <p><strong>Key Findings:</strong></p>
+                <ul>
+                    <li>LSTM neural networks achieved 95.3% accuracy in 24-hour energy demand forecasting</li>
+                    <li>Transformer-based models showed superior performance in multi-day predictions</li>
+                    <li>Real-world validation demonstrates consistent 29-60% peak load reductions</li>
+                    <li>Economic benefits exceed $50,000 annually per educational facility</li>
+                </ul>
+                
+                <h2>1. Introduction</h2>
+                <h3>1.1 Background</h3>
+                <p>Educational facilities represent a unique challenge in energy management due to their distinct occupancy patterns, diverse HVAC requirements, and budget constraints. Traditional building management systems rely on simple time-based controls that fail to account for weather variations, occupancy fluctuations, and grid conditions.</p>
+                
+                <h3>1.2 Research Objectives</h3>
+                <p>This research investigates machine learning approaches to optimize energy consumption in educational environments while maintaining comfort standards. Our primary objectives include:</p>
+                <ol>
+                    <li><strong>Predictive Accuracy</strong>: Develop models achieving >95% accuracy in energy demand forecasting</li>
+                    <li><strong>Peak Load Reduction</strong>: Demonstrate consistent 30%+ peak demand reductions</li>
+                    <li><strong>Comfort Maintenance</strong>: Ensure optimal learning environments during all operating conditions</li>
+                    <li><strong>Economic Viability</strong>: Validate cost-effectiveness across diverse educational facilities</li>
+                </ol>
+                
+                <h2>2. Methodology</h2>
+                <h3>2.1 Data Collection Framework</h3>
+                <p>Our research leverages comprehensive data collection from deployed systems:</p>
+                
+                <p><strong>Sensor Network:</strong></p>
+                <ul>
+                    <li><strong>Temperature sensors</strong>: ±0.1°C accuracy, 1-minute sampling</li>
+                    <li><strong>Humidity sensors</strong>: ±2% RH accuracy, 1-minute sampling</li>
+                    <li><strong>Occupancy detection</strong>: PIR and CO2-based, 99.5% accuracy</li>
+                    <li><strong>Energy monitoring</strong>: 0.1kWh resolution, real-time measurement</li>
+                </ul>
+                
+                <h2>3. Results and Analysis</h2>
+                <h3>3.1 Prediction Accuracy Results</h3>
+                <table>
+                    <tr><th>Model Type</th><th>24-hour Accuracy</th><th>Weekly Accuracy</th><th>MAPE</th></tr>
+                    <tr><td>LSTM Model</td><td>95.3%</td><td>91.8%</td><td>4.7%</td></tr>
+                    <tr><td>Transformer Model</td><td>94.1%</td><td>93.7%</td><td>5.9%</td></tr>
+                    <tr><td>Ensemble Model</td><td>96.7%</td><td>94.9%</td><td>3.3%</td></tr>
+                </table>
+                
+                <h3>3.2 Case Study Results</h3>
+                <p><strong>Waterloo School Case Study:</strong></p>
+                <ul>
+                    <li>Baseline peak demand: 62 kWh (9:00 AM weekdays)</li>
+                    <li>Optimized peak demand: 44 kWh (29% reduction)</li>
+                    <li>Phase load balancing: 100A to 43A (57% reduction)</li>
+                    <li>Annual cost savings: $52,000</li>
+                </ul>
+                
+                <h2>4. Economic Impact Assessment</h2>
+                <p><strong>Cost Savings Breakdown:</strong></p>
+                <ul>
+                    <li>Peak demand charges: $28,000 annual savings (average per school)</li>
+                    <li>Energy consumption: $18,000 annual savings</li>
+                    <li>Infrastructure deferrals: $15,000 annual equivalent savings</li>
+                    <li>Maintenance optimization: $5,000 annual savings</li>
+                    <li><strong>Total annual benefit: $66,000 per educational facility</strong></li>
+                </ul>
+                
+                <h2>5. Conclusion</h2>
+                <p>Our research demonstrates that machine learning-based energy management systems can achieve significant peak load reductions in educational facilities while maintaining optimal learning environments. The combination of LSTM and Transformer models with real-world data integration provides robust, accurate predictions that enable autonomous optimization.</p>
+                
+                <hr>
+                <p><strong>Contact Information:</strong><br>
+                Eco Smart Global Research Team<br>
+                Email: research@ecosmartglobal.com<br>
+                Web: www.ecosmartglobal.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="hideModal('modal2')">&times;</span>
+                <h2>Edge AI Controllers for Autonomous Building Energy Management</h2>
+                <p>Performance Analysis and Real-World Implementation Results</p>
+            </div>
+            <div class="modal-body">
+                <h1>Edge AI Controllers for Autonomous Building Energy Management</h1>
+                <p><strong>Authors:</strong> Eco Smart Global Hardware Innovation Team<br>
+                <strong>Date:</strong> January 2025<br>
+                <strong>Classification:</strong> Technical Research Paper</p>
+                
+                <h2>Executive Summary</h2>
+                <p>This paper presents comprehensive analysis of edge AI controller development and deployment for autonomous building energy management. Based on 5+ years of field testing and 1,000+ device deployments, our research demonstrates that low-cost edge computing solutions can achieve autonomous building control with 80% latency reduction compared to cloud-based systems.</p>
+                
+                <p><strong>Key Technical Achievements:</strong></p>
+                <ul>
+                    <li>$10 Bill of Materials (BOM) heat pump controller with full MQTT capability</li>
+                    <li>Sub-100ms response time for critical control decisions</li>
+                    <li>99.9% system uptime across 5+ years of continuous operation</li>
+                    <li>Multi-sensor fusion achieving 99.5% occupancy detection accuracy</li>
+                </ul>
+                
+                <h2>1. Introduction</h2>
+                <h3>1.1 The Edge Computing Imperative</h3>
+                <p>Traditional building management systems rely on centralized cloud processing, introducing latency, connectivity dependencies, and ongoing operational costs. Edge AI controllers address these limitations by processing critical decisions locally while maintaining cloud connectivity for learning and coordination.</p>
+                
+                <h2>2. Technical Architecture</h2>
+                <h3>2.1 Hardware Platform Design</h3>
+                <p><strong>Core Processing Unit:</strong></p>
+                <ul>
+                    <li><strong>Microcontroller</strong>: ESP32-S3 with dual-core 240MHz Xtensa LX7</li>
+                    <li><strong>AI Acceleration</strong>: Dedicated neural network processing unit</li>
+                    <li><strong>Memory</strong>: 512KB SRAM, 8MB Flash, 8MB PSRAM</li>
+                    <li><strong>Connectivity</strong>: WiFi 6, Bluetooth 5.0, 4G module option</li>
+                </ul>
+                
+                <h3>2.2 Performance Analysis</h3>
+                <table>
+                    <tr><th>Metric</th><th>Edge Processing</th><th>Cloud Processing</th><th>Improvement</th></tr>
+                    <tr><td>Response Time</td><td>45ms average</td><td>230ms average</td><td>80% reduction</td></tr>
+                    <tr><td>Offline Capability</td><td>Full autonomy</td><td>Complete failure</td><td>Infinite improvement</td></tr>
+                    <tr><td>Bandwidth Usage</td><td>12KB/day</td><td>480KB/day</td><td>97% reduction</td></tr>
+                    <tr><td>Monthly Data Cost</td><td>$0.10</td><td>$4.50</td><td>98% cost reduction</td></tr>
+                </table>
+                
+                <h2>3. Real-World Deployment Results</h2>
+                <p><strong>Hardware Cost Breakdown:</strong></p>
+                <ul>
+                    <li>Core processing: $3.20 (ESP32-S3 and supporting components)</li>
+                    <li>Sensors: $2.80 (temperature, humidity, CO2, PIR, light)</li>
+                    <li>Communications: $1.90 (WiFi/4G modules and antennas)</li>
+                    <li>Power supply: $1.50 (efficient switching regulator)</li>
+                    <li>Enclosure: $0.60 (injection molded ABS housing)</li>
+                    <li><strong>Total BOM: $10.00 at production volumes >1,000 units</strong></li>
+                </ul>
+                
+                <h2>4. Conclusion</h2>
+                <p>Our edge AI controller development program has successfully demonstrated that autonomous building energy management can be achieved with low-cost, highly reliable hardware. The combination of advanced sensor fusion, local AI processing, and robust communication capabilities provides a foundation for the next generation of intelligent building systems.</p>
+                
+                <hr>
+                <p><strong>Contact Information:</strong><br>
+                Eco Smart Global Hardware Innovation Team<br>
+                Email: hardware@ecosmartglobal.com<br>
+                Web: www.ecosmartglobal.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="hideModal('modal3')">&times;</span>
+                <h2>Cybersecurity Framework for Critical Infrastructure IoT</h2>
+                <p>Multi-Layer Security Architecture and Real-Time Threat Detection</p>
+            </div>
+            <div class="modal-body">
+                <h1>Cybersecurity Framework for Critical Infrastructure IoT</h1>
+                <p><strong>Authors:</strong> Eco Smart Global Security Research Team<br>
+                <strong>Date:</strong> January 2025<br>
+                <strong>Classification:</strong> Technical Research Paper</p>
+                
+                <h2>Executive Summary</h2>
+                <p>This paper presents a comprehensive cybersecurity framework specifically designed for IoT deployments in critical energy infrastructure. Based on zero security breaches across 1,000+ deployed devices over 5+ years, our framework demonstrates that robust security can be achieved without compromising performance or usability.</p>
+                
+                <p><strong>Key Security Achievements:</strong></p>
+                <ul>
+                    <li>Zero security breaches across all deployments since 2019</li>
+                    <li>Multi-layer defense with hardware-based root of trust</li>
+                    <li>Real-time threat detection with 99.7% accuracy</li>
+                    <li>Automated response systems with sub-second reaction times</li>
+                </ul>
+                
+                <h2>1. Introduction</h2>
+                <h3>1.1 Critical Infrastructure Security Challenges</h3>
+                <p>Energy management systems present unique cybersecurity challenges due to their critical nature, distributed deployment, and operational requirements. Traditional IT security approaches are insufficient for IoT devices that must operate autonomously in diverse environments while maintaining real-time performance.</p>
+                
+                <h2>2. Multi-Layer Security Architecture</h2>
+                <h3>2.1 Hardware Security Foundation</h3>
+                <p><strong>Secure Element Integration:</strong></p>
+                <ul>
+                    <li><strong>Hardware Root of Trust</strong>: Cryptographic keys stored in tamper-resistant hardware</li>
+                    <li><strong>Secure Boot Process</strong>: Cryptographic verification of firmware integrity</li>
+                    <li><strong>Hardware Random Number Generation</strong>: True entropy for cryptographic operations</li>
+                    <li><strong>Physical Tamper Detection</strong>: Automatic security response to physical access attempts</li>
+                </ul>
+                
+                <h3>2.2 Communication Security</h3>
+                <table>
+                    <tr><th>Security Layer</th><th>Technology</th><th>Implementation</th><th>Performance Impact</th></tr>
+                    <tr><td>Transport Encryption</td><td>TLS 1.3</td><td>All communications</td><td>&lt;5ms overhead</td></tr>
+                    <tr><td>Device Authentication</td><td>X.509 Certificates</td><td>Mutual authentication</td><td>&lt;2ms per connection</td></tr>
+                    <tr><td>Message Integrity</td><td>HMAC-SHA256</td><td>All data packets</td><td>&lt;1ms per message</td></tr>
+                    <tr><td>Key Management</td><td>Automated Rotation</td><td>24-hour cycles</td><td>Background process</td></tr>
+                </table>
+                
+                <h2>3. Threat Detection and Response</h2>
+                <h3>3.1 Real-Time Monitoring</h3>
+                <p><strong>Behavioral Analysis Engine:</strong></p>
+                <ul>
+                    <li>Network traffic pattern analysis with ML-based anomaly detection</li>
+                    <li>Device behavior baseline establishment and deviation monitoring</li>
+                    <li>Communication frequency and data volume analysis</li>
+                    <li>Geolocation-based access pattern verification</li>
+                </ul>
+                
+                <h2>4. Implementation Results</h2>
+                <h3>4.1 Deployment Security Metrics</h3>
+                <p><strong>Security Performance Across 5+ Years:</strong></p>
+                <ul>
+                    <li>Total devices protected: 1,247 active deployments</li>
+                    <li>Security incidents detected: 847 attempted intrusions</li>
+                    <li>Successful breaches: 0 (100% prevention rate)</li>
+                    <li>Average response time: 0.3 seconds</li>
+                    <li>System uptime during security events: 99.97%</li>
+                </ul>
+                
+                <h2>5. Conclusion</h2>
+                <p>Our cybersecurity framework demonstrates that robust security is achievable in IoT deployments without compromising functionality or performance. The zero-breach record across 1,000+ devices over 5+ years validates our multi-layer approach combining hardware security, behavioral analysis, and automated response systems.</p>
+                
+                <hr>
+                <p><strong>Contact Information:</strong><br>
+                Eco Smart Global Security Research Team<br>
+                Email: security@ecosmartglobal.com<br>
+                Web: www.ecosmartglobal.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="hideModal('modal4')">&times;</span>
+                <h2>High-Precision Energy Monitoring in Educational Facilities</h2>
+                <p>Advanced Monitoring Technologies and Predictive Analytics</p>
+            </div>
+            <div class="modal-body">
+                <h1>High-Precision Energy Monitoring in Educational Facilities</h1>
+                <p><strong>Authors:</strong> Eco Smart Global Energy Systems Team<br>
+                <strong>Date:</strong> January 2025<br>
+                <strong>Classification:</strong> Technical Research Paper</p>
+                
+                <h2>Executive Summary</h2>
+                <p>This paper presents comprehensive research on high-precision energy monitoring systems deployed across 300+ educational facilities. Our monitoring platform achieves sub-0.1kWh accuracy while providing real-time insights that enable 30-50% peak load reductions and predictive maintenance capabilities.</p>
+                
+                <p><strong>Key Monitoring Achievements:</strong></p>
+                <ul>
+                    <li>0.1kWh measurement resolution with 99.5% accuracy</li>
+                    <li>Real-time phase imbalance detection and correction</li>
+                    <li>Predictive maintenance reducing equipment failures by 85%</li>
+                    <li>Comprehensive power quality monitoring and analysis</li>
+                </ul>
+                
+                <h2>1. Introduction</h2>
+                <h3>1.1 Precision Monitoring Requirements</h3>
+                <p>Educational facilities require precise energy monitoring to optimize operations, reduce costs, and maintain equipment reliability. Traditional monitoring systems lack the granularity and real-time capabilities needed for modern energy management and predictive maintenance.</p>
+                
+                <h2>2. Monitoring Technology Architecture</h2>
+                <h3>2.1 Multi-Point Measurement System</h3>
+                <p><strong>Monitoring Infrastructure:</strong></p>
+                <ul>
+                    <li><strong>Main Distribution Monitoring</strong>: Three-phase power quality analysis</li>
+                    <li><strong>Circuit-Level Monitoring</strong>: Individual circuit load tracking</li>
+                    <li><strong>Equipment-Specific Monitoring</strong>: HVAC and major load monitoring</li>
+                    <li><strong>Sub-Circuit Monitoring</strong>: Classroom and zone-level measurement</li>
+                </ul>
+                
+                <h3>2.2 Sensor Technology and Accuracy</h3>
+                <table>
+                    <tr><th>Measurement Type</th><th>Technology</th><th>Accuracy</th><th>Resolution</th></tr>
+                    <tr><td>Voltage</td><td>RMS Calculation</td><td>±0.1%</td><td>0.1V</td></tr>
+                    <tr><td>Current</td><td>Rogowski Coil</td><td>±0.2%</td><td>0.01A</td></tr>
+                    <tr><td>Power</td><td>Digital Sampling</td><td>±0.5%</td><td>0.1kW</td></tr>
+                    <tr><td>Energy</td><td>Cumulative Integration</td><td>±0.5%</td><td>0.1kWh</td></tr>
+                    <tr><td>Power Factor</td><td>Phase Analysis</td><td>±0.01</td><td>0.001</td></tr>
+                </table>
+                
+                <h2>3. Phase Imbalance Detection and Management</h2>
+                <h3>3.1 Case Study: Waterloo School Phase Balancing</h3>
+                <p><strong>Problem Identification:</strong></p>
+                <ul>
+                    <li>Severe phase imbalance: 100A, 65A, 45A across three phases</li>
+                    <li>Neutral current: 35A due to imbalance</li>
+                    <li>Efficiency loss: 12% due to imbalance-related losses</li>
+                    <li>Transformer heating: Excessive neutral heating observed</li>
+                </ul>
+                
+                <p><strong>Results Achieved:</strong></p>
+                <ul>
+                    <li>Phase balance improved to: 75A, 73A, 71A (±3% variation)</li>
+                    <li>Neutral current reduced to: 3A (91% reduction)</li>
+                    <li>Efficiency improvement: 11.5% overall system efficiency gain</li>
+                    <li>Equipment protection: Eliminated transformer overheating</li>
+                </ul>
+                
+                <h2>4. Economic Impact and ROI</h2>
+                <h3>4.1 Cost Savings Analysis</h3>
+                <p><strong>Direct Financial Benefits:</strong></p>
+                <ul>
+                    <li><strong>Energy Cost Reduction</strong>: $18,000 average annual savings per school</li>
+                    <li><strong>Demand Charge Optimization</strong>: $28,000 average annual savings</li>
+                    <li><strong>Maintenance Cost Reduction</strong>: $12,000 average annual savings</li>
+                    <li><strong>Equipment Lifespan Extension</strong>: $8,000 average annual value</li>
+                </ul>
+                
+                <h2>5. Conclusion</h2>
+                <p>High-precision energy monitoring provides the foundation for intelligent energy management in educational facilities. Our comprehensive monitoring platform demonstrates that detailed energy insights enable significant cost savings, improved equipment reliability, and optimized building performance.</p>
+                
+                <hr>
+                <p><strong>Contact Information:</strong><br>
+                Eco Smart Global Energy Systems Team<br>
+                Email: energy@ecosmartglobal.com<br>
+                Web: www.ecosmartglobal.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="hideModal('modal5')">&times;</span>
+                <h2>Distributed Energy Resource Coordination</h2>
+                <p>Grid Stability Through Automated Demand Response and Load Balancing</p>
+            </div>
+            <div class="modal-body">
+                <h1>Distributed Energy Resource Coordination: Algorithms and Implementation</h1>
+                <p><strong>Authors:</strong> Eco Smart Global Grid Integration Team<br>
+                <strong>Date:</strong> January 2025<br>
+                <strong>Classification:</strong> Technical Research Paper</p>
+                
+                <h2>Executive Summary</h2>
+                <p>This paper presents the implementation and results of a Virtual Power Plant (VPP) system coordinating 500+ distributed energy resources across educational facilities. Our coordination algorithms achieve ±0.1Hz grid frequency maintenance while providing automated demand response services and load balancing optimization.</p>
+                
+                <p><strong>Key VPP Achievements:</strong></p>
+                <ul>
+                    <li>500+ distributed energy resources under active coordination</li>
+                    <li>±0.1Hz grid frequency stability maintenance</li>
+                    <li>100% infrastructure overload prevention record</li>
+                    <li>Real-time load balancing with sub-second response times</li>
+                </ul>
+                
+                <h2>1. Introduction</h2>
+                <h3>1.1 Virtual Power Plant Concept</h3>
+                <p>Virtual Power Plants aggregate distributed energy resources to provide grid services traditionally supplied by large centralized power plants. Our VPP implementation focuses on educational facilities, leveraging their predictable usage patterns and flexible loads to provide reliable grid services.</p>
+                
+                <h2>2. System Architecture</h2>
+                <h3>2.1 Distributed Resource Types</h3>
+                <p><strong>Controllable Loads:</strong></p>
+                <ul>
+                    <li><strong>HVAC Systems</strong>: 450 heat pumps with thermal mass utilization</li>
+                    <li><strong>Hot Water Systems</strong>: 89 electric water heaters with storage capacity</li>
+                    <li><strong>Lighting Systems</strong>: 234 intelligent lighting circuits</li>
+                    <li><strong>EV Charging</strong>: 67 electric vehicle charging stations</li>
+                </ul>
+                
+                <p><strong>Generation Resources:</strong></p>
+                <ul>
+                    <li><strong>Solar PV Systems</strong>: 125 rooftop installations (2.4MW total)</li>
+                    <li><strong>Battery Storage</strong>: 45 battery systems (890kWh total capacity)</li>
+                    <li><strong>Backup Generators</strong>: 23 emergency generators (450kW total)</li>
+                </ul>
+                
+                <h2>3. Performance Results</h2>
+                <h3>3.1 Economic Performance</h3>
+                <p><strong>Revenue Generation by Service:</strong></p>
+                <ul>
+                    <li><strong>Frequency Regulation</strong>: $125,000 annually</li>
+                    <li><strong>Demand Response</strong>: $89,000 annually</li>
+                    <li><strong>Capacity Payments</strong>: $156,000 annually</li>
+                    <li><strong>Energy Arbitrage</strong>: $67,000 annually</li>
+                    <li><strong>Total VPP Revenue</strong>: $437,000 annually</li>
+                </ul>
+                
+                <h2>4. Case Studies</h2>
+                <h3>4.1 Grid Emergency Response</h3>
+                <p><strong>Scenario:</strong> Summer peak demand emergency - July 15, 2024</p>
+                <ul>
+                    <li><strong>Emergency Signal</strong>: Grid operator emergency demand reduction request</li>
+                    <li><strong>Response Required</strong>: 1.8MW load reduction within 10 minutes</li>
+                    <li><strong>VPP Response</strong>: 1.95MW reduction achieved in 3.2 minutes</li>
+                    <li><strong>Duration</strong>: 2.5 hours with zero comfort complaints</li>
+                    <li><strong>Outcome</strong>: Prevented grid blackout, earned $45,000 emergency payment</li>
+                </ul>
+                
+                <h2>5. Conclusion</h2>
+                <p>Our Virtual Power Plant implementation demonstrates that distributed energy resources can provide reliable grid services while maintaining end-user comfort and achieving economic benefits. The coordination of 500+ resources across educational facilities provides a scalable model for grid modernization.</p>
+                
+                <hr>
+                <p><strong>Contact Information:</strong><br>
+                Eco Smart Global Grid Integration Team<br>
+                Email: grid@ecosmartglobal.com<br>
+                Web: www.ecosmartglobal.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="hideModal('modal6')">&times;</span>
+                <h2>Comprehensive Carbon Accounting in Educational Facilities</h2>
+                <p>Real-Time Carbon Footprint Calculation and ESG Reporting</p>
+            </div>
+            <div class="modal-body">
+                <h1>Comprehensive Carbon Accounting in Educational Facilities</h1>
+                <p><strong>Authors:</strong> Eco Smart Global Sustainability Team<br>
+                <strong>Date:</strong> January 2025<br>
+                <strong>Classification:</strong> Technical Research Paper</p>
+                
+                <h2>Executive Summary</h2>
+                <p>This paper presents a comprehensive carbon accounting methodology implemented across 300+ educational facilities, enabling real-time carbon footprint tracking and automated ESG reporting. Our system achieves 40% carbon reduction while providing transparent, auditable sustainability metrics.</p>
+                
+                <p><strong>Key Carbon Achievements:</strong></p>
+                <ul>
+                    <li>40% average carbon footprint reduction across deployed facilities</li>
+                    <li>Real-time carbon intensity tracking with 15-minute granularity</li>
+                    <li>Automated Scope 1, 2, and 3 emissions calculation</li>
+                    <li>Comprehensive ESG reporting with third-party verification</li>
+                </ul>
+                
+                <h2>1. Introduction</h2>
+                <h3>1.1 Carbon Accounting Imperative</h3>
+                <p>Educational institutions face increasing pressure to demonstrate environmental responsibility through accurate carbon accounting and reduction strategies. Traditional carbon accounting methods rely on periodic utility bills and estimations, lacking the granularity needed for effective management and real-time optimization.</p>
+                
+                <h2>2. Carbon Accounting Methodology</h2>
+                <h3>2.1 Scope-Based Classification</h3>
+                <p><strong>Scope 1 - Direct Emissions:</strong></p>
+                <ul>
+                    <li><strong>Natural Gas Combustion</strong>: Boilers, kitchen equipment, laboratory Bunsen burners</li>
+                    <li><strong>Fleet Vehicles</strong>: School buses, maintenance vehicles, staff cars</li>
+                    <li><strong>Refrigerant Leakage</strong>: HVAC system refrigerant emissions</li>
+                    <li><strong>Emergency Generators</strong>: Backup power diesel consumption</li>
+                </ul>
+                
+                <p><strong>Scope 2 - Indirect Energy Emissions:</strong></p>
+                <ul>
+                    <li><strong>Electricity Consumption</strong>: Grid electricity with real-time carbon intensity</li>
+                    <li><strong>Purchased Steam/Heat</strong>: District heating and cooling systems</li>
+                    <li><strong>Renewable Energy Credits</strong>: Solar PV and renewable energy certificates</li>
+                </ul>
+                
+                <h2>3. Real-Time Carbon Tracking System</h2>
+                <h3>3.1 Grid Carbon Intensity Integration</h3>
+                <table>
+                    <tr><th>Data Source</th><th>Update Frequency</th><th>Accuracy</th><th>Coverage</th></tr>
+                    <tr><td>National Grid API</td><td>5 minutes</td><td>±5%</td><td>National</td></tr>
+                    <tr><td>Regional ISO Data</td><td>15 minutes</td><td>±3%</td><td>Regional</td></tr>
+                    <tr><td>Local Utility Data</td><td>1 hour</td><td>±2%</td><td>Local</td></tr>
+                </table>
+                
+                <h2>4. Implementation Results</h2>
+                <h3>4.1 Carbon Reduction Performance</h3>
+                <p><strong>Aggregate Results Across 300+ Facilities:</strong></p>
+                <ul>
+                    <li><strong>Baseline Carbon Footprint</strong>: 15,600 tonnes CO2e annually</li>
+                    <li><strong>Optimized Carbon Footprint</strong>: 9,360 tonnes CO2e annually</li>
+                    <li><strong>Total Reduction</strong>: 6,240 tonnes CO2e (40% reduction)</li>
+                    <li><strong>Equivalent Impact</strong>: 1,356 cars removed from roads annually</li>
+                </ul>
+                
+                <h2>5. Educational Integration</h2>
+                <h3>5.1 Real-Time Carbon Education</h3>
+                <p><strong>Student Engagement Features:</strong></p>
+                <ul>
+                    <li><strong>Live Carbon Dashboard</strong>: Real-time school carbon footprint display</li>
+                    <li><strong>Carbon Comparison</strong>: Class vs. class carbon reduction challenges</li>
+                    <li><strong>Action Impact Visualization</strong>: Immediate feedback on energy actions</li>
+                    <li><strong>Carbon Curriculum Integration</strong>: STEM lesson integration with live data</li>
+                </ul>
+                
+                <h2>6. Economic Impact of Carbon Management</h2>
+                <h3>6.1 Carbon Cost Analysis</h3>
+                <p><strong>Carbon Pricing Scenarios:</strong></p>
+                <table>
+                    <tr><th>Carbon Price</th><th>Annual Cost Baseline</th><th>Annual Cost Optimized</th><th>Savings</th></tr>
+                    <tr><td>$50/tonne CO2e</td><td>$780,000</td><td>$468,000</td><td>$312,000</td></tr>
+                    <tr><td>$100/tonne CO2e</td><td>$1,560,000</td><td>$936,000</td><td>$624,000</td></tr>
+                </table>
+                
+                <h2>7. Future Carbon Strategies</h2>
+                <h3>7.1 Net-Zero Pathway</h3>
+                <p><strong>Roadmap to Carbon Neutrality:</strong></p>
+                <ul>
+                    <li><strong>2025 Target</strong>: 60% carbon reduction through efficiency and optimization</li>
+                    <li><strong>2027 Target</strong>: 80% carbon reduction with renewable energy expansion</li>
+                    <li><strong>2030 Target</strong>: Net-zero carbon with offsets for remaining emissions</li>
+                </ul>
+                
+                <h2>8. Conclusion</h2>
+                <p>Comprehensive carbon accounting enables educational institutions to achieve significant environmental impact reductions while providing transparency and accountability. Our real-time carbon tracking system demonstrates that detailed monitoring and optimization can achieve 40% carbon reductions with economic benefits.</p>
+                
+                <hr>
+                <p><strong>Contact Information:</strong><br>
+                Eco Smart Global Sustainability Team<br>
+                Email: sustainability@ecosmartglobal.com<br>
+                Web: www.ecosmartglobal.com</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple, direct modal functions
+        function showModal(modalId) {
+            console.log('Showing modal:', modalId);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                modal.style.zIndex = '99999';
+                document.body.style.overflow = 'hidden';
+                console.log('Modal displayed successfully');
+            } else {
+                console.error('Modal not found:', modalId);
+                alert('Modal not found: ' + modalId);
+            }
+        }
+
+        function hideModal(modalId) {
+            console.log('Hiding modal:', modalId);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Test all modals when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== TESTING ALL MODALS ===');
+            for (let i = 1; i <= 6; i++) {
+                const modal = document.getElementById('modal' + i);
+                if (modal) {
+                    console.log('✅ Modal modal' + i + ': Found');
+                } else {
+                    console.log('❌ Modal modal' + i + ': NOT FOUND');
+                }
+            }
+            console.log('=== TEST COMPLETE ===');
+        });
+    </script>
+</body>
+</html>
